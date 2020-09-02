@@ -2,32 +2,39 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var dbJson = require("./db/db.json")
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = 3000;
 
+var notes = "The king";
+
 app.get("/", function(req, res) {
-  // res.send("Welcome to the Star Wars Page!")
-  res.sendFile(path.join(__dirname, "notes.html"));
+  res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
-app.get("/api/notes", function(req, res) {
-  return res.json(characters);
+app.get("/notes", function(req, res) {
+  res.sendFile(path.join(__dirname, "/public/notes.html"))
+  // return res.json(notes);
 });
+
+app.get("/api/notes", function(req, res){
+  res.sendFile(path.join(__dirname, "/db/db.json"))
+    re
+})
 
 app.post("/api/notes", function(req, res){
   // var newNote = 
-  console.log(req.body)
+ var notes = req.body;
 });
 
 app.delete("/api/notes/:id", function(req, res){
-
+  res.sendFile
 });
 
 app.get("*", function(req, res) {
-  // res.send("Welcome to the Star Wars Page!")
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
