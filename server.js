@@ -7,7 +7,10 @@ var dbJson = require("./db/db.json")
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
 
 var notes = "The king";
 
@@ -21,13 +24,11 @@ app.get("/notes", function(req, res) {
 });
 
 app.get("/api/notes", function(req, res){
-  res.sendFile(path.join(__dirname, "/db/db.json"))
-    re
+  res.json(dbJson)
 })
 
 app.post("/api/notes", function(req, res){
-  // var newNote = 
- var notes = req.body;
+  res.send
 });
 
 app.delete("/api/notes/:id", function(req, res){
