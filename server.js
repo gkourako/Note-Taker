@@ -3,6 +3,8 @@
 var express = require("express");
 var path = require("path");
 var dbJson = require("./db/db.json")
+var fs = require("fs");
+const { json } = require("express");
 
 // Sets up the Express App
 // =============================================================
@@ -12,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-var notes = "The king";
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"));
@@ -28,11 +29,29 @@ app.get("/api/notes", function(req, res){
 })
 
 app.post("/api/notes", function(req, res){
-  res.send
+//  console.log(req.body)
+let id = dbJson.length + 1
+var title = req.body.title
+var text = req.body.text
+var newEntry = {
+  title: title,
+  text: text,
+  id: id
+}
+  
+  dbJson.push(newEntry)
+  console.log(dbJson)
+ 
+
+  fs.writeFile("./db/db.json", JSON.stringify(dbJson), function(){
+    console.("success")
+  })
 });
 
 app.delete("/api/notes/:id", function(req, res){
-  res.sendFile
+
+  delete newEntry
+//  console.log(req.params.id)
 });
 
 app.get("*", function(req, res) {
