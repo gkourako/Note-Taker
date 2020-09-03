@@ -44,7 +44,7 @@ var newEntry = {
  
 
   fs.writeFile("./db/db.json", JSON.stringify(dbJson), function(){
-    console.log("success")
+    res.json(dbJson)
   })
 });
 
