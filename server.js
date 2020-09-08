@@ -30,17 +30,14 @@ app.get("/api/notes", function(req, res){
 
 app.post("/api/notes", function(req, res){
 //  console.log(req.body)
-let id = dbJson.length + 1
+let id = dbJson.length ? dbJson[dbJson.length-1].id + 1 : 0
 var title = req.body.title
 var text = req.body.text
-var newEntry = {
-  title: title,
-  text: text,
-  id: id
-}
+
+req.body.id = id
+dbJson.push(req.body)
   
-  dbJson.push(newEntry)
-  console.log(dbJson)
+ 
  
 
   fs.writeFile("./db/db.json", JSON.stringify(dbJson), function(){
@@ -49,9 +46,15 @@ var newEntry = {
 });
 
 app.delete("/api/notes/:id", function(req, res){
-
-  delete newEntry
-//  console.log(req.params.id)
+  var id = req.params.id
+  console.log(id)
+  for(var i = 0; i < dbJson.length; i++) {
+    if(dbJson[i].id === id) {
+      dbJson = dbJson.splice(i, 1)
+      fs.writeFile('./db/db.json', dbJson.id)
+    } 
+    
+  }
 });
 
 app.get("*", function(req, res) {
