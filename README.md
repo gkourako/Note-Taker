@@ -9,3 +9,7 @@ This application was created with Java Script, CSS, HTML, and Node JS.
 
 ## How to use it
 Simply click get started and you'll be brought to the notes page.  Add a title, your notes and click save in the top right corner.  To write a new note, simply click the pen at the top right of the sreen!  Enjoy :)
+
+## Visuals
+![Note Taker](sc1.png)
+![Note Taker](sc2.png)
