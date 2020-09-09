@@ -52,7 +52,7 @@ app.delete("/api/notes/:id", function(req, res){
     if(dbJson[i].id === id) {
       dbJson = dbJson.splice(i, 1)
       fs.writeFile('./db/db.json', dbJson.id)
-    } 
+    } res.status(200).end;
     
   }
 });
